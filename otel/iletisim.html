@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İletişim | Royal Van Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E8D5C4;
+            --secondary: #A7727D;
+            --accent: #EDDBC7;
+            --text: #9F8772;
+            --bg-light: #F8EDE3;
+            --bg-dark: #8B7E74;
+            --white: #FFFFFF;
+            --heading: #625959;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Ana Menü */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(139, 126, 116, 0.95);
+            padding: 1rem 0;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--bg-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--primary);
+            color: var(--text);
+        }
+
+        /* Başlık */
+        .page-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(139, 126, 116, 0.3), rgba(139, 126, 116, 0.3)), url('contact-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* İletişim Kartları */
+        .contact-cards {
+            margin-top: -50px;
+            margin-bottom: 4rem;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            color: var(--heading);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* İletişim Formu */
+        .contact-section {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .form-container {
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--heading);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            background-color: var(--white);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Harita Bölümü */
+        .map-section {
+            padding: 4rem 0;
+            background-color: var(--bg-light);
+        }
+
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .map-info {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .map-info h3 {
+            color: var(--heading);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .map-info ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .map-info li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .map-info i {
+            color: var(--secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-cards {
+                margin-top: -30px;
+            }
+
+            .map-info ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ana Menü -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">ROYAL VAN HOTEL</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">ANA SAYFA</a>
+                <a href="services.html">SERVİSLER</a>
+                <a href="hakkinda.html">HAKKINDA</a>
+                <a href="kesfet.html">VAN'I KEŞFET</a>
+                <a href="iletisim.html" class="active">İLETİŞİM</a>
+                <a href="#" class="nav-cta">REZERVASYON</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Başlık -->
+    <header class="page-header">
+        <div class="container">
+            <h1>İletişim</h1>
+            <p>Sizinle tanışmak için sabırsızlanıyoruz</p>
+        </div>
+    </header>
+
+    <!-- İletişim Kartları -->
+    <section class="contact-cards">
+        <div class="container">
+            <div class="cards-container">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adres</h3>
+                    <p>Sahil Yolu No:123</p>
+                    <p>Edremit / VAN</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefon</h3>
+                    <p>+90 432 123 4567</p>
+                    <p>+90 432 123 4568</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>E-posta</h3>
+                    <p>info@royalvanhotel.com</p>
+                    <p>rezervasyon@royalvanhotel.com</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Formu -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="form-info">
+                    <h2>Bize Ulaşın</h2>
+                    <p>Sorularınız ve önerileriniz için aşağıdaki formu doldurabilirsiniz.</p>
+                </div>
+                <div class="form-container">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Ad Soyad</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Konu</label>
+                            <select id="subject" class="form-control" required>
+                                <option value="">Seçiniz</option>
+                                <option value="reservation">Rezervasyon</option>
+                                <option value="info">Bilgi Talebi</option>
+                                <option value="feedback">Geri Bildirim</option>
+                                <option value="other">Diğer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mesajınız</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Gönder</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Harita -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-container">
+                <img src="./assests/images/#van #edremit.jpeg" alt="Otel Konumu" style="width: 100%; height: 400px; object-fit: cover;">
+                <div class="map-info">
+                    <h3>Nasıl Ulaşılır?</h3>
+                    <ul>
+                        <li><i class="fas fa-plane"></i> Ferit Melen Havalimanı'na 15 dk</li>
+                        <li><i class="fas fa-bus"></i> Otogar'a 20 dk</li>
+                        <li><i class="fas fa-car"></i> Şehir merkezine 10 dk</li>
+                        <li><i class="fas fa-ship"></i> Van Gölü İskelesi'ne 5 dk</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+<a href="https://wa.me/90533" target="_blank" class="whatsapp-btn">
+  <img src="./assests/images/wp.png" alt="WhatsApp ile İletişime Geç" />
+</a>
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ROYAL VAN HOTEL</h4>
+                <p>Van Gölü'nün incisi, lüks ve konforun buluşma noktası</p>
+            </div>
+            <div class="footer-section">
+                <h4>İLETİŞİM</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Sahil Yolu No:123, Van</li>
+                    <li><i class="fas fa-phone"></i> +90 432 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@royalvanhotel.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>SOSYAL MEDYA</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

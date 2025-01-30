@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Van'ı Keşfet | Royal Van Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E8D5C4;
+            --secondary: #A7727D;
+            --accent: #EDDBC7;
+            --text: #9F8772;
+            --bg-light: #F8EDE3;
+            --bg-dark: #8B7E74;
+            --white: #FFFFFF;
+            --heading: #625959;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Üst Menü */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(139, 126, 116, 0.95);
+            padding: 1rem 0;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--bg-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--primary);
+            color: var(--text);
+        }
+
+        /* Başlık Bölümü */
+        .page-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(139, 126, 116, 0.3), rgba(139, 126, 116, 0.3)), url('van-golu.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Turistik Yerler */
+        .tourist-spots {
+            padding: 4rem 0;
+        }
+
+        .spots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .spot-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .spot-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .spot-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .spot-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .spot-card:hover .spot-image img {
+            transform: scale(1.1);
+        }
+
+        .spot-content {
+            padding: 2rem;
+        }
+
+        .spot-content h3 {
+            color: var(--heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .spot-content p {
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+
+        /* Van Mutfağı */
+        .van-cuisine {
+            padding: 4rem 0;
+            background-color: var(--white);
+        }
+
+        .cuisine-section {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .cuisine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .cuisine-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .cuisine-card img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+        }
+
+        /* Etkinlikler */
+        .activities {
+            padding: 4rem 0;
+        }
+
+        .activity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .activity-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .activity-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .activity-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: var(--white);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .spot-card, .cuisine-card {
+                margin: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ana Menü -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">ROYAL VAN HOTEL</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">ANA SAYFA</a>
+                <a href="hakkinda.html">HAKKINDA</a>
+                <a href="kesfet.html" class="active">VAN'I KEŞFET</a>
+                <a href="iletisim.html">İLETİŞİM</a>
+                <a href="#" class="nav-cta">REZERVASYON</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Başlık -->
+    <header class="page-header">
+        <div class="container">
+            <h1>Van'ın Eşsiz Güzelliklerini Keşfedin</h1>
+            <p>Binlerce yıllık tarihi ve doğal güzellikleriyle Van'ı tanıyın</p>
+        </div>
+    </header>
+
+    <!-- Turistik Yerler -->
+    <section class="tourist-spots">
+        <div class="container">
+            <h2>Gezilecek Yerler</h2>
+            <div class="spots-grid">
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="./assests/images/log in or sign up.jpeg" alt="Van Kalesi">
+                    </div>
+                    <div class="spot-content">
+                        <h3>Van Kalesi</h3>
+                        <p>Urartu Krallığı'ndan günümüze kalan bu muhteşem kale, Van'ın simgesi konumundadır.</p>
+                        <ul>
+                            <li>M.Ö. 9. yüzyılda inşa edilmiştir</li>
+                            <li>Göl manzaralı konumu</li>
+                            <li>Tarihi kalıntılar ve müze</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="./assests/images/Akdaman Island, Lake Van, Turkey.jpeg" alt="Akdamar Adası">
+                    </div>
+                    <div class="spot-content">
+                        <h3>Akdamar Adası</h3>
+                        <p>Van Gölü'nün incisi Akdamar Adası, tarihi kilisesi ve eşsiz manzarasıyla büyülüyor.</p>
+                        <ul>
+                            <li>915-921 yılları arası yapılan kilise</li>
+                            <li>Tekne turları</li>
+                            <li>Muhteşem gün batımı manzarası</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="spot-card">
+                    <div class="spot-image">
+                        <img src="./assests/images/Hoşap kalesi Van.jpeg" alt="Hoşap Kalesi">
+                    </div>
+                    <div class="spot-content">
+                        <h3>Hoşap Kalesi</h3>
+                        <p>17. yüzyıldan kalma bu görkemli kale, Osmanlı mimarisinin en güzel örneklerinden.</p>
+                        <ul>
+                            <li>Osmanlı döneminden kalma kale</li>
+                            <li>Eşsiz taş işçiliği</li>
+                            <li>Panoramik manzara</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Van Mutfağı -->
+    <section class="van-cuisine">
+        <div class="container">
+            <div class="cuisine-section">
+                <h2>Van Mutfağı</h2>
+                <p>Geleneksel lezzetleri ve eşsiz kahvaltısıyla ünlü Van mutfağını keşfedin</p>
+            </div>
+            <div class="cuisine-grid">
+                <div class="cuisine-card">
+                    <img src="./assests/images/Van da sabah kahvaltısı.jpeg" alt="Van Kahvaltısı">
+                    <h3>Van Kahvaltısı</h3>
+                    <p>Türkiye'nin en meşhur kahvaltı kültürü</p>
+                    <ul>
+                        <li>Otlu Peynir</li>
+                        <li>Kavut</li>
+                        <li>Murtuğa</li>
+                        <li>Van Balı</li>
+                    </ul>
+                </div>
+
+                <div class="cuisine-card">
+                    <img src="./assests/images/Van Herby Cheese - 1 lb.jpeg" alt="Otlu Peynir">
+                    <h3>Otlu Peynir</h3>
+                    <p>Van'ın dünyaca ünlü peyniri</p>
+                    <ul>
+                        <li>Doğal otlar</li>
+                        <li>Geleneksel yapım</li>
+                        <li>Eşsiz lezzet</li>
+                    </ul>
+                </div>
+
+                <div class="cuisine-card">
+                    <img src="./assests/images/f94d11cb-4296-49ff-83a8-b77455a8a102.jpeg" alt="Keledoş">
+                    <h3>Keledoş</h3>
+                    <p>Geleneksel Van yemeği</p>
+                    <ul>
+                        <li>Özel baharatlar</li>
+                        <li>El yapımı hamur</li>
+                        <li>Yöresel tarif</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>ROYAL VAN HOTEL</h4>
+                <p>Van Gölü'nün incisi, lüks ve konforun buluşma noktası</p>
+            </div>
+            <div class="footer-section">
+                <h4>İLETİŞİM</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> Sahil Yolu No:123, Van</li>
+                    <li><i class="fas fa-phone"></i> +90 432 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@royalvanhotel.com</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>SOSYAL MEDYA</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

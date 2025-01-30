@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetlerimiz | Royal Van Hotel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E8D5C4;
+            --secondary: #A7727D;
+            --accent: #EDDBC7;
+            --text: #9F8772;
+            --bg-light: #F8EDE3;
+            --bg-dark: #8B7E74;
+            --white: #FFFFFF;
+            --heading: #625959;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background-color: var(--bg-light);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Ana Menü */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(139, 126, 116, 0.95);
+            padding: 1rem 0;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-text {
+            color: var(--primary);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--bg-light);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background-color: var(--primary);
+            color: var(--text);
+        }
+
+        /* Sayfa Başlığı */
+        .page-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(139, 126, 116, 0.3), rgba(139, 126, 116, 0.3)), url('services-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            margin-bottom: 2rem;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem;
+        }
+
+        /* Servis Kategorileri */
+        .service-category {
+            padding: 4rem 0;
+        }
+
+        .service-category:nth-child(odd) {
+            background-color: var(--white);
+        }
+
+        .service-category:nth-child(even) {
+            background-color: var(--bg-light);
+        }
+
+        .service-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .service-header h2 {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--heading);
+            margin-bottom: 1rem;
+        }
+
+        /* Servis Kartları */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .service-item {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-item:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--heading);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Özellik Listeleri */
+        .service-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .service-features i {
+            color: var(--secondary);
+        }
+
+        /* Fiyat ve Rezervasyon */
+        .service-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent);
+        }
+
+        .price-tag {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .book-service {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .book-service:hover {
+            background-color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .service-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .service-item {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ana Menü -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">ROYAL VAN HOTEL</span>
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">ANA SAYFA</a>
+                <a href="hakkinda.html">HAKKINDA</a>
+                <a href="kesfet.html">VAN'I KEŞFET</a>
+                <a href="iletisim.html">İLETİŞİM</a>
+                <a href="#" class="nav-cta">REZERVASYON</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sayfa Başlığı -->
+    <header class="page-header">
+        <h1>Hizmetlerimiz</h1>
+        <p>Konforunuz için özenle tasarlandı</p>
+    </header>
+
+    <!-- Spa & Wellness -->
+    <section class="service-category">
+        <div class="container">
+            <div class="service-header">
+                <h2>Spa & Wellness</h2>
+                <p>Kendinizi yenilemeniz için tasarlanmış özel alanlar</p>
+            </div>
+            <div class="service-grid">
+                <!-- Masaj Hizmeti -->
+                <div class="service-item">
+                    <div class="service-image">
+                        <img src="./assests/images/download (5).jpeg" alt="Masaj Hizmeti">
+                    </div>
+                    <div class="service-content">
+                        <h3>Klasik Masaj</h3>
+                        <p>Profesyonel masörlerimiz tarafından uygulanan rahatlatıcı masaj deneyimi.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-clock"></i> 60 dakika</li>
+                            <li><i class="fas fa-spa"></i> Özel masaj yağları</li>
+                            <li><i class="fas fa-music"></i> Rahatlatıcı müzik</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-tag">₺600</span>
+                            <a href="#" class="book-service">Rezervasyon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sauna -->
+                <div class="service-item">
+                    <div class="service-image">
+                        <img src="./assests/images/Sauna Room Inspiration [Montenegro Stone House Renovation Vision Board].jpeg" alt="Sauna">
+                    </div>
+                    <div class="service-content">
+                        <h3>Sauna & Buhar Odası</h3>
+                        <p>Toksinlerden arınmanızı sağlayan geleneksel sauna deneyimi.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-temperature-high"></i> Ayarlanabilir ısı</li>
+                            <li><i class="fas fa-wind"></i> Aromatik buhar</li>
+                            <li><i class="fas fa-clock"></i> Sınırsız kullanım</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-tag">₺300</span>
+                            <a href="#" class="book-service">Rezervasyon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hamam -->
+                <div class="service-item">
+                    <div class="service-image">
+                        <img src="./assests/images/Accommodation Archive.jpeg" alt="Türk Hamamı">
+                    </div>
+                    <div class="service-content">
+                        <h3>Türk Hamamı</h3>
+                        <p>Geleneksel Türk hamamı deneyimi ve köpük masajı.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-soap"></i> Özel kese ve sabunlama</li>
+                            <li><i class="fas fa-hot-tub"></i> Köpük masajı</li>
+                            <li><i class="fas fa-clock"></i> 45 dakika</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-tag">₺450</span>
+                            <a href="#" class="book-service">Rezervasyon</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restoran & Bar -->
+    <section class="service-category">
+        <div class="container">
+            <div class="service-header">
+                <h2>Restoran & Bar</h2>
+                <p>Yerel ve dünya mutfağından seçkin lezzetler</p>
+            </div>
+            <div class="service-grid">
+                <!-- Van Kahvaltı -->
+                <div class="service-item">
+                    <div class="service-image">
+                        <img src="./assests/images/Hilton Kuala Lumpur (Hotelbewertung 2023).jpeg" alt="Van Kahvaltısı">
+                    </div>
+                    <div class="service-content">
+                        <h3>Van Kahvaltı Salonu</h3>
+                        <p>Van'ın meşhur kahvaltı kültürünü en özel haliyle deneyimleyin.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-clock"></i> 07:00 - 11:00</li>
+                            <li><i class="fas fa-cheese"></i> Otlu peynir</li>
+                            <li><i class="fas fa-bread-slice"></i> Ev yapımı ekmekler</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-tag">₺250/kişi</span>
+                            <a href="#" class="book-service">Rezervasyon</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ana Restoran -->
+                <div class="service-item">
+                    <div class="service-image">
+                        <img src="./assests/images/Gina🍸.jpeg" alt="Ana Restoran">
+                    </div>
+                    <div class="service-content">
+                        <h3>Göl Restaurant</h3>
+                        <p>Van Gölü manzarasına karşı dünya mutfağından lezzetler.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-utensils"></i> A'la carte menü</li>
+                            <li><i class="fas fa-wine-glass"></i> Zengin şarap kavı</li>
+                            <li><i class="fas fa-mountain"></i> Göl manzarası</li>
+                        </ul>
+                        <div class="service-price">
+                            <span class="price-info">Menü fiyatları için tıklayın</span>
+                            <a href="#" class="book-service">Menü
